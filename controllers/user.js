@@ -1,5 +1,8 @@
 const User = require("../models/user");
 
+
+
+
 module.exports.renderSignupForm = (req,res)=>{
     res.render("users/signup");
 };
@@ -28,10 +31,16 @@ module.exports.renderLoginForm = (req,res)=>{
 };
 
 module.exports.login = async(req,res)=>{
+    req.logout((err)=>{
+        if (err) {
+          return  next(err);
+        }
     req.flash("success", "Welcome back to Wondelust");
     let redirectUrl = res.locals.redirectUrl ||"/listings";  
-    res.redirect(redirectUrl);
-};
+     passport.authenticate("local")(req, res, function(){
+            res.redirect("/listings");
+          });
+})};
 
 module.exports.logout = (req, res, next)=>{
     req.logout((err)=>{

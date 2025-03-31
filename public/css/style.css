@@ -210,6 +210,7 @@ body{
     display: inline-block;
     margin-left: 28%;
     margin-top: 11%;
+    letter-spacing: 10px;
 }
 .title-price{
     display: inline;
@@ -226,3 +227,12 @@ body{
     opacity: 1;
 }
 
+.googleBtn{
+    border: 1px solid royalblue;
+    all:unset;
+    padding: 10px 20px;
+    background-color: rgb(23, 19, 210);
+    border-radius: 30px;
+    color: #fff;
+    margin-left: 40%;
+}
