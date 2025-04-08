@@ -1,7 +1,5 @@
 const User = require("../models/user");
-
-
-
+const passport = require('passport')
 
 module.exports.renderSignupForm = (req,res)=>{
     res.render("users/signup");
@@ -13,6 +11,7 @@ module.exports.signup = async(req,res) => {
     const newUser = new User({ email, username, password});
     const registeredUser = await User.register(newUser , password);
     console.log(registeredUser);
+    
     req.login(registeredUser, (err) => {
         if(err) {
             return next();
@@ -30,7 +29,7 @@ module.exports.renderLoginForm = (req,res)=>{
     res.render("users/login");
 };
 
-module.exports.login = async(req,res)=>{
+module.exports.login = async(req,res,next)=>{
     req.logout((err)=>{
         if (err) {
           return  next(err);

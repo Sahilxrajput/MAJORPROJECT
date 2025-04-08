@@ -59,3 +59,20 @@
     border: 1px solid black;
     background-color: rgb(249, 249, 249);
 }
+
+/* //////////////////////privacy, terms and condition/////////////////////////////// */
+.top-term-card{
+  background: royalblue;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 20px 0 50px 0;
+  color: aliceblue;
+}
+
+.term-card{
+ background: #FF99C9;
+ padding: 50px;
+ margin-bottom: 20px;
+ border-radius: 50px;
+ color: #121212;
+}

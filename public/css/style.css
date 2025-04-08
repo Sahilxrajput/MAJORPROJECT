@@ -84,14 +84,29 @@ body{
     height: 8rem;
     background-color: #ebebeb;
         display: flex;
-        flex-direction: column;
+        flex-direction: row-reverse;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: space-between;
+        padding: 0 100px;
+        margin-bottom: -80px;
 }
-.f-info-socials i{
+.f-info-socials a{
     margin-right: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+.fa-github, .fa-x-twitter{
+    color: #222222;
+}
+.fa-square-instagram{
+    color: #d52e85;
+}
+.sahil{
+    color: #1d857e;
+    font-weight: 800;
+    text-decoration-line: underline;
+    letter-spacing: 3px;
 }
 
 /* Cards */

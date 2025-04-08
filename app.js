@@ -2,7 +2,7 @@ if(process.env.NODE_ENV != "production"){
     require("dotenv").config();
 }
 
-const express = require("express");
+const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
@@ -32,12 +32,10 @@ main()
     .catch((e)=>{
         console.log(e);
     });
+////////////////////////////////////////////////
 
-
-// app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"/views"));
-
 app.use(express.static(path.join(__dirname,"public")));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -72,7 +70,9 @@ app.use((req,res,next)=>{
 app.use("/listings" , listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
-
+app.get("/privacy", (req,res,next)=>{
+    res.render("./listings/privacyAndTerms");
+})
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"Page not found!"));
