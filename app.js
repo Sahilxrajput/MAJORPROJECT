@@ -10,6 +10,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");  
 const ExpressError = require("./utils/ExpressError");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -20,9 +21,9 @@ const reviewRouter = require("./routes/review");
 const userRouter = require("./routes/user");
 
 
-////////////DataBase////////////////
+
 async function main() {
-    await mongoose.connect("mongodb://localhost:27017/wanderlust");
+    await mongoose.connect(process.env.ATLAS_DB_URL);
 };
 
 main()
@@ -32,7 +33,7 @@ main()
     .catch((e)=>{
         console.log(e);
     });
-////////////////////////////////////////////////
+
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"/views"));
@@ -41,14 +42,29 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 
+
+const store = MongoStore.create({
+    mongoUrl: process.env.ATLAS_DB_URL,
+    crypto: {
+        secret: process.env.DB_SECRET,
+    },
+    touchAfter: 24 * 60 * 60, // 24 hours
+});
+
+store.on("error", function(e){
+    console.log("Mongo Session store error", e);
+});
+
 const sessionOptions = {
-    secret: "mysupersecretcode",
+    store,
+    secret: process.env.DB_SECRET,
     resave: false,
     saveUninitialized: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
      maxAge: 1000 * 60 * 60 * 24 * 7,
      httpOnly: true
 };
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -72,6 +88,9 @@ app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 app.get("/privacy", (req,res,next)=>{
     res.render("./listings/privacyAndTerms");
+})
+app.get("/",(req,res,next)=>{
+    res.send("I am root!");
 })
 
 app.all("*",(req,res,next)=>{

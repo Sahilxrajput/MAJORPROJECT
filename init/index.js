@@ -7,6 +7,8 @@ async function main() {
     await mongoose.connect("mongodb://localhost:27017/wanderlust");
 };
 
+
+
 main()
     .then(()=>{
         console.log("Connected to databases");
