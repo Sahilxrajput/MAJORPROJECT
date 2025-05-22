@@ -1,0 +1,75 @@
+@font-face {
+  font-family: Futura;
+  src: url(../../Futura-Bold.ttf) format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+.main {
+  height: 100vh;
+  width: 100vw;
+  background: #dfe0dc;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+#text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+#welcome {
+  font-weight: 200;
+}
+.to {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #351431;
+}
+#wanderlust {
+  color: #351431;
+  font-family: "Futura", "Rowdies", sans-serif;
+  font-size: 5rem;
+  letter-spacing: 5px;
+  cursor: pointer;
+  /* text-shadow: 5px 5px 10px salmon */
+}
+.icons {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 20px;
+  top: 20px;
+  right: 20px;
+  /* background-color: red; */
+}
+.icons a {
+  text-decoration: none;
+  color: #351431;
+}
+.return-btn a {
+  text-decoration: none;
+  color: #775253;
+  font-family: "Futura", "Rowdies", sans-serif;
+  border: 1px solid #775253;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 100;
+}
+
+.return-btn {
+  margin-top: 500px;
+  position: absolute;
+}

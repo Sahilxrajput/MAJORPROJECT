@@ -5,12 +5,16 @@ module.exports.renderSignupForm = (req,res)=>{
     res.render("users/signup");
 };
 
-module.exports.signup = async(req,res) => { 
+module.exports.signup = async(req,res, next) => { 
    try {
     let {username, email , password} = req.body;
-    const newUser = new User({ email, username, password});
+    
+    if( !username || !email || !password ){
+        return res.status(400).json({message: "Provide all the cradietails "})
+    }
+
+    const newUser = new User({ email, username});
     const registeredUser = await User.register(newUser , password);
-    console.log(registeredUser);
     
     req.login(registeredUser, (err) => {
         if(err) {
