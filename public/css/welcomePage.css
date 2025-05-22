@@ -58,7 +58,10 @@ body {
   text-decoration: none;
   color: #351431;
 }
-.return-btn a {
+.home-link{
+
+}
+.return-btn{
   text-decoration: none;
   color: #775253;
   font-family: "Futura", "Rowdies", sans-serif;
@@ -67,9 +70,6 @@ body {
   font-size: 1rem;
   border-radius: 10px;
   font-weight: 100;
-}
-
-.return-btn {
-  margin-top: 500px;
   position: absolute;
+  margin-top: 200px;
 }
